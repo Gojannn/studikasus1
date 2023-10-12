@@ -23,7 +23,7 @@ def index():
         score = request.form.get("score")# ambil data dari imput month
 
         # insert data into database, masukkan data name, month, day ke database
-        db.execute("INSERT INTO score (name, score) VALUES(?, ?)", name, score)
+        db.execute("INSERT INTO score(name, score)VALUES(?, ?)", name, score)
         #index_test=db.execute("SELECT * ")
 
         # Go back to homepage
@@ -37,4 +37,14 @@ def index():
         # salin isi variabel birthdays ke birthdays, lalu kirim ke index.html
         return render_template("index.html", students=students)
     
-
+@app.route("/edit/<id>", methods=["GET", "POST"])
+def edit_data(id):
+    if request.method == "GET":
+        ubah = db.execute("SELECT * from score WHERE id = ?", id)[0]
+        print(ubah)
+        return render_template("edit.html",ubah=ubah)
+    elif request.method == "POST":
+        ubah_name = request.form.get("name")
+        ubah_score = request.form.get("score")
+        db.execute('UPDATE score set name = ?, score = ? where id = ?', ubah_name, ubah_score, id)
+        return redirect("/")

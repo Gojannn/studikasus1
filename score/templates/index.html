@@ -25,6 +25,7 @@
                     <tr>
                         <th>Name</th>
                         <th>score</th>
+                        <th>edit</th>
                     </tr>
                 </thead>
 
@@ -32,7 +33,8 @@
                     {% for students in students %} 
                     <tr>
                         <td>{{students.name}}</td>
-                        <td>{{students.score}}
+                        <td>{{students.score}}</td>
+                        <td> <a href="/edit/{{students['id'] }}">Edit</a> </td>
                     </tr>
                     {% endfor %}
                 </tbody>
