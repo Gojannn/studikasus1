@@ -34,7 +34,11 @@
                     <tr>
                         <td>{{students.name}}</td>
                         <td>{{students.score}}</td>
-                        <td> <a href="/edit/{{students['id'] }}">Edit</a> </td>
+                        <td> 
+                            <a href="/edit/{{students['id'] }}">Edit</a> 
+                            <a href="/delete/{{students['id']}}"
+                            onclick="return confirm('Apakah anda yakin akan menghapus?');">Delete</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
